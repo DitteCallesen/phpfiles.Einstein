@@ -1,7 +1,6 @@
-//For Android app Einstein 
-//check if input username is in the database, if yes send userinfo to app to compare
 <?php
-   
+   //For Android app Einstein 
+   //check if input username is in the database, if yes send userinfo to app to compare
      //establish link to database
     $con = mysqli_connect("localhost", "id939471_admin", "admin", "id939471_manage");
     
@@ -14,7 +13,7 @@
     mysqli_stmt_bind_param($statement, "s", $username);
     mysqli_stmt_execute($statement);
     mysqli_stmt_store_result($statement);
-    mysqli_stmt_bind_result($statement, $userID, $name, $username, $email, $password, $position);
+    mysqli_stmt_bind_result($statement, $userID, $name, $username, $email, $password, $position, $ansInARow, $Solved);
     
     $response = array();
     $response["success"] = false;  
@@ -26,6 +25,7 @@
         $response["email"] = $email;
         $response["password"] = $password;
         $response["position"] = $position;
+        $response["Asolved"] = $Solved;
     }
     //send data to app 
     echo json_encode($response);
